@@ -1,13 +1,16 @@
+import { Routes, Route } from 'react-router-dom';
 import Container from '@mui/material/Container';
-import { Header } from './components'
+import { Header, Home } from './components'
 
 function App() {
   return (
     <>
-    <Header/>
-    <Container maxWidth='lg'>
-      <></>
-    </Container>
+      <Header />
+      <Container maxWidth='lg'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </Container>
     </>
   );
 }
