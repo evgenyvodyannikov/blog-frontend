@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Container from '@mui/material/Container';
-import { Header, Home } from './components'
+import { Header } from './components'
+import { Home } from './pages'
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <Header />
       <Container maxWidth='lg'>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Container>
     </>
