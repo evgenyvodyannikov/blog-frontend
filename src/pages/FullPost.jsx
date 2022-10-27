@@ -9,10 +9,10 @@ import axios from "../axios";
 export const FullPost = () => {
   const [data, setData] = React.useState();
   const [isLoading, setLoading] = React.useState(true);
-  const { id } = useParams();
+  const { _id } = useParams();
 
   React.useEffect(() => {
-    axios.get(`/posts/${id}`).then(res => {
+    axios.get(`/posts/${_id}`).then(res => {
       setData(res.data);
       setLoading(false);
     }).catch(err => {
@@ -34,7 +34,7 @@ export const FullPost = () => {
         imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
         user={data.user}
         createdAt={data.createdAt}
-        viewsCount={data.viewsCount}
+        viewCount={data.viewCount}
         commentsCount={data.commentsCount}
         tags={data.tags}
         isFullPost
