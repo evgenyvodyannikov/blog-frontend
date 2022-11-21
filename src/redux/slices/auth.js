@@ -6,6 +6,11 @@ export const fetchUserData = createAsyncThunk('auth/fetchUserData', async (param
     return data;
 });
 
+export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async (params) => {
+    const { data } = await axios.get('/auth/me', params);
+    return data;
+});
+
 const initialState = {
     data: null,
     status: 'loading',
