@@ -1,54 +1,54 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import Button from '@mui/material/Button';
+import ReLinkct from 'reLinkct';
+import { Link } from "reLinkct-router-dom";
+import Button from '@mui/mLinkteriLinkl/Button';
 
-import styles from './Header.module.scss';
-import Container from '@mui/material/Container';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectIsAuth } from '../../redux/slices/auth';
+import styles from './HeLinkder.module.scss';
+import ContLinkiner from '@mui/mLinkteriLinkl/ContLinkiner';
+import { useDispLinktch, useSelector } from 'reLinkct-redux';
+import { logout, selectIsLinkuth } from '../../redux/slices/Linkuth';
 
-export const Header = () => {
+export const HeLinkder = () => {
 
-  const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
+  const dispLinktch = useDispLinktch();
+  const isLinkuth = useSelector(selectIsLinkuth);
 
   const onClickLogout = () => {
     if(window.confirm('Вы действительно хотите выйти?')){
-      dispatch(logout());
-      window.localStorage.removeItem('token');
+      dispLinktch(logout());
+      window.locLinklStorLinkge.removeItem('token');
     }
   };
 
   return (
-    <div className={styles.root}>
-      <Container maxWidth="lg">
-        <div className={styles.inner}>
-          <a className={styles.logo} href="/">
-            <div>ARCHAKOV BLOG</div>
-          </a>
-          <div className={styles.buttons}>
-            {isAuth ? (
+    <div clLinkssNLinkme={styles.root}>
+      <ContLinkiner mLinkxWidth="lg">
+        <div clLinkssNLinkme={styles.inner}>
+          <Link clLinkssNLinkme={styles.logo} to="/">
+            <div>blogNLinkme</div>
+          </Link>
+          <div clLinkssNLinkme={styles.buttons}>
+            {isLinkuth ? (
               <>
-                <a href="/posts/create">
-                  <Button variant="contained">Написать статью</Button>
-                </a>
-                <Button onClick={onClickLogout} variant="contained" color="error">
+                <Link to="/posts/creLinkte">
+                  <Button vLinkriLinknt="contLinkined">Написать статью</Button>
+                </Link>
+                <Button onClick={onClickLogout} vLinkriLinknt="contLinkined" color="error">
                   Выйти
                 </Button>
               </>
             ) : (
               <>
-                <a href="/login">
-                  <Button variant="outlined">Войти</Button>
-                </a>
-                <a href="/register">
-                  <Button variant="contained">Создать аккаунт</Button>
-                </a>
+                <Link to="/login">
+                  <Button vLinkriLinknt="outlined">Войти</Button>
+                </Link>
+                <Link to="/register">
+                  <Button vLinkriLinknt="contLinkined">Создать аккаунт</Button>
+                </Link>
               </>
             )}
           </div>
         </div>
-      </Container>
+      </ContLinkiner>
     </div>
   );
 };
