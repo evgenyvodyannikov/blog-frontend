@@ -17,10 +17,12 @@ export const AddPost = () => {
 
   const imageUrl = '';
   const [value, setValue] = React.useState('');
+  const [title, setTitle] = React.useState('');
+  const [tags, setTags] = React.useState('');
 
-  const handleChangeFile = () => {};
+  const handleChangeFile = () => { };
 
-  const onClickRemoveImage = () => {};
+  const onClickRemoveImage = () => { };
 
   const onChange = React.useCallback((value) => {
     setValue(value);
@@ -41,7 +43,7 @@ export const AddPost = () => {
     [],
   );
 
-  if(!isAuth){
+  if (!window.localStorage.getItem('token') && !isAuth) {
     return <Navigate to="/" />;
   }
 
@@ -65,9 +67,17 @@ export const AddPost = () => {
         classes={{ root: styles.title }}
         variant="standard"
         placeholder="Заголовок статьи..."
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         fullWidth
       />
-      <TextField classes={{ root: styles.tags }} variant="standard" placeholder="Тэги" fullWidth />
+      <TextField
+        classes={{ root: styles.tags }}
+        variant="standard"
+        placeholder="Тэги"
+        value={tags}
+        onChange={(e) => setTags(e.target.value)}
+        fullWidth />
       <SimpleMDE className={styles.editor} value={value} onChange={onChange} options={options} />
       <div className={styles.buttons}>
         <Button size="large" variant="contained">
