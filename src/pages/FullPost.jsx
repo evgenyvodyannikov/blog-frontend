@@ -10,10 +10,10 @@ import ReactMarkdown from "react-markdown";
 export const FullPost = () => {
   const [data, setData] = React.useState();
   const [isLoading, setLoading] = React.useState(true);
-  const { _id } = useParams();
+  const { id } = useParams();
 
   React.useEffect(() => {
-    axios.get(`/posts/${_id}`).then(res => {
+    axios.get(`/posts/${id}`).then(res => {
       setData(res.data);
       setLoading(false);
     }).catch(err => {
@@ -50,16 +50,16 @@ export const FullPost = () => {
           {
             user: {
               fullName: "Вася Пупкин",
-              avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              avatarUrl: "https://mui.com/static/images/avatar/3.jpg",
             },
-            text: "дадаада афщы шаф тащфы щоафщ ытфы тща щфтшыащ тф ащфыт атщф ыщатш фыщ",
+            text: "Это тестовый комментарий",
           },
           {
             user: {
               fullName: "Иван Иванов",
-              avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+              avatarUrl: "https://mui.com/static/images/avatar/5.jpg",
             },
-            text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
+            text: "Это тестовый комментарий",
           },
         ]}
         isLoading={false}
