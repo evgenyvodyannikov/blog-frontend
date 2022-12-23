@@ -38,7 +38,7 @@ export const Home = () => {
             <Post
               _id={obj._id}
               title={obj.title}
-              imageUrl={`${process.env.REACT_APP_APP_URL}/${obj.imageUrl}`}
+              imageUrl={obj.imageUrl}
               user={obj.user}
               createdAt={obj.createdAt}
               viewCount={obj.viewCount}
