@@ -38,7 +38,7 @@ export const Home = () => {
             <Post
               _id={obj._id}
               title={obj.title}
-              imageUrl="https://www.webrexstudio.com/wp-content/uploads/2019/05/react-js-image.png"
+              imageUrl={`http://localhost:4444/${obj.imageUrl}`}
               user={obj.user}
               createdAt={obj.createdAt}
               viewCount={obj.viewCount}
