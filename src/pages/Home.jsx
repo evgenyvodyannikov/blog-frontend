@@ -51,8 +51,9 @@ export const Home = () => {
 
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          <TagsBlock items={tags.items} isLoading={isTagsLoading} title='Популярные тэги' />
           <CommentsBlock
+            title='Последние комментарии'
             items={[
               {
                 user: {

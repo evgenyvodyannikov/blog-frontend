@@ -11,9 +11,9 @@ import Skeleton from "@mui/material/Skeleton";
 import { SideBlock } from "./SideBlock";
 import { Link } from "react-router-dom";
 
-export const TagsBlock = ({ items, isLoading = true }) => {
+export const TagsBlock = ({ items, isLoading = true, title = 'Тэги' }) => {
   return (
-    <SideBlock title="Тэги">
+    <SideBlock title={title}>
       <List>
         {(isLoading ? [...Array(5)] : items).map((name, i) => (
           <Link
