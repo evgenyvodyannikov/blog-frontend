@@ -8,6 +8,7 @@ import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
 import { fetchPosts, fetchTags } from '../redux/slices/posts';
+import { useState } from 'react';
 
 export const Home = () => {
 
@@ -18,21 +19,26 @@ export const Home = () => {
   const isPostsLoading = posts.status === 'loading';
   const isTagsLoading = tags.status === 'loading';
 
+  const [ tab, setTab ] = useState(0);
+
   React.useEffect(() => {
     dispatch(fetchPosts())
     dispatch(fetchTags())
   }, []);
 
+  const handleTabs = (e, val) => {
+    setTab(val);
+  };
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="Новые" />
-        <Tab label="Популярные" />
+      <Tabs style={{ marginBottom: 15 }} value={tab} onChange={handleTabs} aria-label="basic tabs example">
+        <Tab label="Новые"/>
+        <Tab label="Популярные"/>
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostsLoading ? (
+          {(isPostsLoading ? [...Array(5)] : (tab == 1 ? [...posts.items].sort((a, b) => b.viewCount - a.viewCount) : posts.items)).map((obj, index) => isPostsLoading ? (
             <Post key={index} isLoading={true} />
           ) : (
             <Post

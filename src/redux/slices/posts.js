@@ -63,7 +63,7 @@ const postsSlice = createSlice({
         },
         // Remove:
         [fetchRemovePost.pending]: (state, action) => {
-            state.posts.items = state.posts.items.fulter(obj => obj._id == action.payload);
+            state.posts.items = state.posts.items.filter(obj => obj._id == action.payload);
         },
     }
 });
