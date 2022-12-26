@@ -73,7 +73,7 @@ export const Home = () => {
               />
             )
           )}
-          ;
+          
         </Grid>
         {name ? (
           <></>
