@@ -25,6 +25,7 @@ function App() {
             <Route exact path="/add-post" element={<AddPost />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/register" element={<Registration />} />
+            <Route exact path="/tags/:name" element={<Home />} />
           </Routes>
       </Container>
     </>

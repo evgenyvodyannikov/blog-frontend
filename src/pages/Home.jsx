@@ -3,6 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { Post } from "../components/Post";
 import { TagsBlock } from "../components/TagsBlock";
@@ -14,6 +15,8 @@ export const Home = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
   const { posts, tags, comments } = useSelector((state) => state.posts);
+
+  const { name } = useParams();
 
   const isPostsLoading = posts.status === "loading";
   const isTagsLoading = tags.status === "loading";
@@ -31,19 +34,25 @@ export const Home = () => {
 
   return (
     <>
-      <Tabs
-        style={{ marginBottom: 15 }}
-        value={tab}
-        onChange={handleTabs}
-        aria-label="basic tabs example"
-      >
-        <Tab label="Новые" />
-        <Tab label="Популярные" />
-      </Tabs>
+      { name ? (
+        <></>
+      ) : (
+        <Tabs
+          style={{ marginBottom: 15 }}
+          value={tab}
+          onChange={handleTabs}
+          aria-label="basic tabs example"
+        >
+          <Tab label="Новые" />
+          <Tab label="Популярные" />
+        </Tabs>
+      )}
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostsLoading
             ? [...Array(5)]
+            : name 
+            ? [...posts.items].filter((item) => item.tags.indexOf(name) >= 0)
             : tab == 1
             ? [...posts.items].sort((a, b) => b.viewCount - a.viewCount)
             : posts.items
@@ -66,33 +75,37 @@ export const Home = () => {
           )}
           ;
         </Grid>
-        <Grid xs={4} item>
-          <TagsBlock
-            items={tags.items}
-            isLoading={isTagsLoading}
-            title="Популярные тэги"
-          />
-          <CommentsBlock
-            title="Последние комментарии"
-            items={[
-              {
-                user: {
-                  fullName: "Вася Пупкин",
-                  avatarUrl: "https://mui.com/static/images/avatar/3.jpg",
+        {name ? (
+          <></>
+        ) : (
+          <Grid xs={4} item>
+            <TagsBlock
+              items={tags.items}
+              isLoading={isTagsLoading}
+              title="Популярные тэги"
+            />
+            <CommentsBlock
+              title="Последние комментарии"
+              items={[
+                {
+                  user: {
+                    fullName: "Вася Пупкин",
+                    avatarUrl: "https://mui.com/static/images/avatar/3.jpg",
+                  },
+                  text: "Это тестовый комментарий",
                 },
-                text: "Это тестовый комментарий",
-              },
-              {
-                user: {
-                  fullName: "Иван Иванов",
-                  avatarUrl: "https://mui.com/static/images/avatar/5.jpg",
+                {
+                  user: {
+                    fullName: "Иван Иванов",
+                    avatarUrl: "https://mui.com/static/images/avatar/5.jpg",
+                  },
+                  text: "Это тестовый комментарий",
                 },
-                text: "Это тестовый комментарий",
-              },
-            ]}
-            isLoading={false}
-          />
-        </Grid>
+              ]}
+              isLoading={false}
+            />
+          </Grid>
+        )}
       </Grid>
     </>
   );
