@@ -19,7 +19,7 @@ export const Home = () => {
   const isPostsLoading = posts.status === 'loading';
   const isTagsLoading = tags.status === 'loading';
 
-  const [ tab, setTab ] = useState(0);
+  const [ tab, setTab ] = useState(1);
 
   React.useEffect(() => {
     dispatch(fetchPosts())
